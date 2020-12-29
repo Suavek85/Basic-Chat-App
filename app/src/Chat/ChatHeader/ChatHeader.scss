@@ -1,0 +1,28 @@
+$block: block;
+$blockHeader: block__header;
+
+
+.#{$block} {
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    h1 {
+        font-size: 14px;
+        color: grey;
+    }
+
+    button {
+        width: 50%;
+        margin-bottom: 15px;
+    }
+}
+
+
+:export {
+    block: $block;
+    blockHeader: $blockHeader;
+}
+

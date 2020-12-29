@@ -6,7 +6,7 @@ const SOCKET_SERVER_URL = "http://localhost:5000";
 const useTyping = (roomId) => {
 
   const socket = useRef();
-  const [isTyping, setIsTyping] = useState(false);
+  const [someoneTyping, setSomeoneTyping] = useState(false);
 
   useEffect(() => {
     socket.current = socketIOClient(SOCKET_SERVER_URL, {
@@ -15,7 +15,7 @@ const useTyping = (roomId) => {
 
     socket.current.on(TYPING, (message) => {
       if (message.senderId !== socket.current.id) {
-        setIsTyping(message.someone);
+        setSomeoneTyping(message.isTyping);
       }
     });
 
@@ -25,14 +25,14 @@ const useTyping = (roomId) => {
 
   }, [roomId]);
 
-  const sendTyping = (messageBody) => { 
+  const sendSomeoneTyping = (message) => { 
     socket.current.emit(TYPING, {  
-      someone: messageBody.someone,
+      isTyping: message.isTyping,
       senderId: socket.current.id,
     });
   };
 
-  return { isTyping, sendTyping };
+  return { someoneTyping, sendSomeoneTyping };
 };
 
 export default useTyping;

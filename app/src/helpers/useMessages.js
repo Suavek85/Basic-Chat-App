@@ -21,17 +21,16 @@ const useMessages = (roomId) => {
       setMessages((messages) => [...messages, incomingMessage]);
     });
     
-
     return () => {
       socket.current.disconnect();
     };
 
   }, [roomId]);
 
-  const sendMessage = (messageBody) => { 
+  const sendMessage = (message) => { 
     socket.current.emit(MESSAGE_EVENT, {
-      body: messageBody.newMessage,
-      user: messageBody.user,
+      newMessage: message.newMessage,
+      user: message.user,
       senderId: socket.current.id,
     });
   };

@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
+import ChatHeader from './ChatHeader/ChatHeader';
 import useMessages from "../helpers/useMessages";
 import useTyping from "../helpers/useTyping";
 import { AppContext } from "../helpers/context";
 import getTime from "../helpers/getTime";
-import { CHAT_NAME, USER_NAME, YOU_WRITING, SOMEONE_WRITING } from "./constants";
+import { YOU_WRITING, SOMEONE_WRITING } from "./constants";
 import { StyledSend } from "./StyledSend";
 import styles from "./Chat.scss";
 
@@ -12,10 +13,10 @@ const Chat = (props) => {
 
   const { roomId } = props.match.params;
   const { messages, sendMessage } = useMessages(roomId);
-  const { isTyping, sendTyping } = useTyping(roomId);
+  const { someoneTyping, sendSomeoneTyping } = useTyping(roomId);
 
   const [newMessage, setNewMessage] = useState("");
-  const [userWriting, setUserWriting] = useState(false);
+  const [myselfTyping, setMyselfTyping] = useState(false);
 
   const [user] = useContext(AppContext);
 
@@ -23,12 +24,12 @@ const Chat = (props) => {
   
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
-    setUserWriting(true);
-    sendTyping({ someone: true });
+    setMyselfTyping(true);
+    sendSomeoneTyping({ isTyping: true });
 
     setTimeout(function(){ 
-      setUserWriting(false)
-      sendTyping({ someone: false });
+      setMyselfTyping(false)
+      sendSomeoneTyping({ isTyping: false });
     }, 2000);
 
   };
@@ -40,10 +41,7 @@ const Chat = (props) => {
 
   return (
     <div className={ styles.chat }>
-      <div className={ styles.chatHeader }>
-        <h1 className="chat-name">{ CHAT_NAME }{ roomId }</h1>
-        <h1 className="user-name">{ USER_NAME }{ user }</h1>
-      </div>
+      <ChatHeader roomId={roomId} user={user} />
       <div className={ styles.messages }>
         <ol className={ styles.messagesList }>
           {messages.map((message, i) => (
@@ -53,7 +51,7 @@ const Chat = (props) => {
               }`}
               key={ i }
             >
-              { message.body }
+              { message.newMessage }
               <span>
                 { message.isCurrentUserMessage ? 'You' : message.user }, { time }
               </span>
@@ -61,8 +59,8 @@ const Chat = (props) => {
           ))}
         </ol>
         <div>
-          <span>{ userWriting? YOU_WRITING : null }</span>
-          <span>{ isTyping? SOMEONE_WRITING : null }</span>
+          <span>{ myselfTyping? YOU_WRITING : null }</span>
+          <span>{ someoneTyping? SOMEONE_WRITING : null }</span>
         </div>
       </div>
       <div className={ styles.messagesInput }>
