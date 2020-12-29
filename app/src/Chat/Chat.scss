@@ -1,0 +1,135 @@
+$chat: chat;
+$chatHeader: chat__header;
+$messages: messages;
+$messagesList: messages__list;
+$messagesInput: messages__input;
+$messagesInputText: messages__input-text;
+$messagesBox: messages__box;
+$messagesBoxOwn: messages__box--own;
+$messagesBoxReceived: messages__box--received;
+
+.#{$chat} {
+    width: 400px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 25px auto;
+
+    textarea { 
+        width: calc(100% - 80px);
+        border: none;
+        border-left: 1.5px solid grey;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        h1 {
+            font-size: 14px;
+            color: grey;
+        }
+    }
+}
+
+
+.#{$messages} {
+    flex: 1;
+    min-height: 100px;
+    overflow: auto;
+    border: 1.5px solid grey;
+    border-color: darkgray;
+
+    &__list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    &__input {
+      display: flex;
+      border-bottom: 1.5px solid grey;
+      border-right: 1.5px solid grey;
+    }
+
+    &__input-text {
+        height: 40px;
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    &__box {
+        position: relative;
+        padding: 10px 8px;
+        border-radius: 4px;
+        color: black;
+        margin-bottom: 20px;
+        word-break: break-word;
+        &:first-child {
+            margin-top: 20px;
+        }
+
+        &--own {
+            background-color: #BEE9F9;
+            margin-left: 25px;
+            margin-right: 10px;
+    
+            &:after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 50%;
+                width: 0;
+                height: 0;
+                border: 5px solid transparent;
+                border-left-color: #BEE9F9;
+                border-right: 0;
+                margin-top: -5px;
+                margin-right: -5px;
+            }
+
+            span {
+                position: absolute;
+                width: 200px;
+                display: flex;
+                justify-content: flex-end;
+                top: -14px;
+                right: 0;
+                color: grey;
+                font-size: 11px;
+            }
+        }
+
+        &--received {
+            background-color: #D8EEF6;
+            margin-left: 10px;
+            margin-right: 25px;
+    
+            span {
+                position: absolute;
+                width: 200px;
+                display: flex;
+                justify-content: flex-start;
+                top: -14px;
+                left: 0;
+                color: grey;
+                font-size: 11px;
+            }
+        }      
+    }
+}
+
+:export {
+    chat: $chat;
+    chatHeader: $chatHeader;
+    messages: $messages;
+    messagesList: $messagesList;
+    messagesInput: $messagesInput;
+    messagesInputText: $messagesInputText;
+    messagesBox: $messagesBox;
+    messagesBoxOwn: $messagesBoxOwn;
+    messagesBoxReceived: $messagesBoxReceived;
+}
+

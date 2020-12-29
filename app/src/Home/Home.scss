@@ -1,0 +1,53 @@
+$block: home;
+$blockInput: home__input;
+$blockButton: home__button;
+$blockButtonDisabled: home__button--disabled;
+
+.#{$block} {
+    width: 400px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 25px auto;
+    border: 1.5px solid grey;
+
+    &__input {
+        padding: 20px 10px;
+        width: 80%;
+        border: 1px solid grey;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 15px;
+    }
+
+    &__button {
+        width: 80%;
+        padding: 20px 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 15px;
+        text-align: center;
+        background: blue;
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+    
+        &--disabled {
+            background-color: #cccccc;
+            color: #666666;
+        }
+    }
+}
+
+:export {
+    block: $block;
+    blockInput: $blockInput;
+    blockButton: $blockButton;
+    blockButtonDisabled: $blockButtonDisabled;
+}
