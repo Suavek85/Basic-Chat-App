@@ -31,6 +31,8 @@ const useMessages = (roomId) => {
     socket.current.emit(MESSAGE_EVENT, {
       newMessage: message.newMessage,
       user: message.user,
+      day: message.day,
+      time: message.time,
       senderId: socket.current.id,
     });
   };

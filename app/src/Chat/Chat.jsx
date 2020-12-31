@@ -12,7 +12,6 @@ import styles from "./Chat.scss";
 const Chat = (props) => {
 
   const { roomId } = props.match.params;
-  const currentDay = getDay();
 
   const { messages, sendMessage } = useMessages(roomId);
   const { someoneTyping, sendSomeoneTyping } = useTyping(roomId);
@@ -20,8 +19,6 @@ const Chat = (props) => {
   const [newMessage, setNewMessage] = useState("");
   const [myselfTyping, setMyselfTyping] = useState(false);
 
-  //add here time to solve the bug. convert string to obj
-  const [daysArr, setDaysArr] = useState([currentDay]);
 
   const [user] = useContext(AppContext);
 
@@ -38,23 +35,28 @@ const Chat = (props) => {
   };
 
   const handleSendMessage = () => {
-    sendMessage({ newMessage, user });
-    setNewMessage("");
-    setDaysArr([...daysArr, currentDay])
-  };
 
+    const { day, time } = getDay();
+    sendMessage({ 
+      newMessage, 
+      user,
+      day,
+      time,
+    });
+    setNewMessage("");
+  };
 
   return (
     <div className={ styles.chat }>
       <ChatHeader roomId={roomId} user={user} />
       <div className={ styles.messages }>
         <ol className={ styles.messagesList }>
-          {messages.map((message, i) => (
+          {messages.map((message, i, array) => (
             <>
               {
-                i === 0 || daysArr[i].day !== daysArr[i - 1].day ? (
+                i === 0 || array[i].day !== array[i - 1].day ? (
                   <div className={ styles.messagesDay }>
-                    <span>{ daysArr[i].day }</span>
+                    <span>{ message.day }</span>
                   </div>
                 ) : null
               }
@@ -66,7 +68,7 @@ const Chat = (props) => {
               >
                 { message.newMessage }
                 <span>
-                  { message.isCurrentUserMessage ? 'You' : message.user }, { daysArr[i].time }
+                  { message.isCurrentUserMessage ? 'You' : message.user }, { message.time }
                 </span>
               </li>
             </>
