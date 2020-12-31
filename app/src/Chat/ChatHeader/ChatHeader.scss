@@ -15,8 +15,13 @@ $blockHeader: block__header;
     }
 
     button {
-        width: 50%;
         margin-bottom: 15px;
+        background-color: none;
+        color: #404040;
+        padding: 5px 10px;
+        border: 0.5px solid grey;
+        border-radius: 5px;
+        cursor: pointer;
     }
 }
 

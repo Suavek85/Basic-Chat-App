@@ -2,6 +2,7 @@ $chat: chat;
 $chatHeader: chat__header;
 $messages: messages;
 $messagesList: messages__list;
+$messagesDay: messages__day;
 $messagesInput: messages__input;
 $messagesInputText: messages__input-text;
 $messagesBox: messages__box;
@@ -59,6 +60,22 @@ $messagesBoxReceived: messages__box--received;
         font-size: 16px;
         padding: 8px 12px;
     }
+
+    &__day {
+        text-align: center; 
+        font-size: 14px;
+        width: 90%;
+        color: grey;
+        border-bottom: 1px solid #EEEEEE;; 
+        line-height: 0;
+        margin: 20px auto 30px auto;
+
+        > span { 
+            padding: 0 11px; 
+            background: white; 
+        }
+    } 
+     
 
     &__box {
         position: relative;
@@ -127,6 +144,7 @@ $messagesBoxReceived: messages__box--received;
     messages: $messages;
     messagesList: $messagesList;
     messagesInput: $messagesInput;
+    messagesDay: $messagesDay;
     messagesInputText: $messagesInputText;
     messagesBox: $messagesBox;
     messagesBoxOwn: $messagesBoxOwn;

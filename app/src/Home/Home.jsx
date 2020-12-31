@@ -15,9 +15,14 @@ const Home = () => {
 
   const handleUserNameChange = (event) => {
     setUser(event.target.value);
-    if (event.target.value !== "") {
+    const reg = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/;
+
+    if (event.target.value.match(reg)) {
       setIsInput(true)
+    } else {
+      setIsInput(false)
     }
+  
   };
 
   return (
