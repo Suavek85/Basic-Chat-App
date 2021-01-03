@@ -5,7 +5,10 @@ import styles from "./ChatHeader.scss";
 
 const ChatHeader = props => {
 
-    const { roomId, user } = props;
+    const { 
+      roomId, 
+      user
+    } = props;
 
     return (
         <section className={ styles.block }>
@@ -13,9 +16,13 @@ const ChatHeader = props => {
             <h1 className="chat-name">{ CHAT_NAME }{ roomId }</h1>
             <h1 className="user-name">{ USER_NAME }{ user }</h1>
           </div>
-          <Link to={`/`} > 
-            <button >{ LEAVE_ROOM }</button>
-          </Link>
+          <div className={ styles.blockHeader }>
+            <Link to={`/`} > 
+              <button>
+                  { LEAVE_ROOM }
+              </button>
+            </Link>
+          </div>
         </section>
     )
 }

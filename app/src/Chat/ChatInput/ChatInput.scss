@@ -1,0 +1,24 @@
+$messages: messages;
+$messagesInput: messages__input;
+$messagesInputText: messages__input-text;
+
+.#{$messages} {
+
+    &__input {
+      display: flex;
+      border-bottom: 1.5px solid grey;
+      border-right: 1.5px solid grey;
+    }
+
+    &__input-text {
+        height: 40px;
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+}
+
+:export {
+    messagesInput: $messagesInput;
+    messagesInputText: $messagesInputText;
+}
+

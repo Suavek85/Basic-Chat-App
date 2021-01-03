@@ -1,0 +1,144 @@
+$messages: messages;
+$messagesList: messages__list;
+$messagesDay: messages__day;
+$messagesInput: messages__input;
+$messagesUser: messages__user;
+$messagesInputText: messages__input-text;
+$messagesBox: messages__box;
+$messagesBoxOwn: messages__box--own;
+$messagesBoxReceived: messages__box--received;
+
+.#{$messages} {
+    flex: 1;
+    min-height: 100px;
+    overflow: auto;
+    border: 1.5px solid grey;
+    border-color: darkgray;
+
+    &__list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    &__input {
+      display: flex;
+      border-bottom: 1.5px solid grey;
+      border-right: 1.5px solid grey;
+    }
+
+    &__input-text {
+        height: 40px;
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    &__user {
+        font-size: 14px;
+        color: black;
+        padding-left: 10px;
+
+    }
+
+    &__day {
+        text-align: center; 
+        font-size: 14px;
+        width: 90%;
+        color: grey;
+        border-bottom: 1px solid #EEEEEE;
+        line-height: 0;
+        margin: 20px auto 30px auto;
+
+        > span { 
+            padding: 0 11px; 
+            background: white; 
+        }
+    } 
+     
+
+    &__box {
+        position: relative;
+        padding: 10px 8px;
+        border-radius: 4px;
+        color: black;
+        margin-bottom: 20px;
+        word-break: break-word;
+        &:first-child {
+            margin-top: 20px;
+        }
+
+        &--own {
+            background-color: #BEE9F9;
+            margin-left: 25px;
+            margin-right: 10px;
+    
+            &:after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 50%;
+                width: 0;
+                height: 0;
+                border: 5px solid transparent;
+                border-left-color: #BEE9F9;
+                border-right: 0;
+                margin-top: -5px;
+                margin-right: -5px;
+            }
+
+            span {
+                position: absolute;
+                width: 200px;
+                display: flex;
+                justify-content: flex-end;
+                top: -14px;
+                right: 0;
+                color: grey;
+                font-size: 11px;
+            }
+        }
+
+        &--received {
+            background-color: #D8EEF6;
+            margin-left: 10px;
+            margin-right: 25px;
+    
+            span {
+                position: absolute;
+                width: 200px;
+                display: flex;
+                justify-content: flex-start;
+                top: -14px;
+                left: 0;
+                color: grey;
+                font-size: 11px;
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                width: 0;
+                height: 0;
+                border: 5px solid transparent;
+                border-right-color: #D8EEF6;
+                border-left: 0;
+                margin-top: -5px;
+                margin-left: -5px;
+            }
+        }      
+    }
+}
+
+:export {
+    messages: $messages;
+    messagesList: $messagesList;
+    messagesInput: $messagesInput;
+    messagesDay: $messagesDay;
+    messagesUser: $messagesUser;
+    messagesInputText: $messagesInputText;
+    messagesBox: $messagesBox;
+    messagesBoxOwn: $messagesBoxOwn;
+    messagesBoxReceived: $messagesBoxReceived;
+}
+
