@@ -19,8 +19,14 @@ io.on("connection", (socket) => {
     io.in(roomId).emit(TYPING, data);
   });
 
+  //added
+  socket.on('test2', (data) => {
+    io.in(roomId).emit('test2', data);
+  });
+
   socket.on("disconnect", () => {
-    console.log(`Client ${socket.id} diconnected`);
+    console.log(`Client ${socket.id} diconnected`); //TODO: why does it output 3 different socket.ids?
+    io.in(roomId).emit('test', { id: socket.id});
     socket.leave(roomId);
   });
 });

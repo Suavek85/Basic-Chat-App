@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ChatHeader from './ChatHeader/ChatHeader';
 import ChatMessages from './ChatMessages/ChatMessages';
 import ChatInput from './ChatInput/ChatInput';
 import useMessages from "../helpers/useMessages";
 import useTyping from "../helpers/useTyping";
+import useTest from "../helpers/useTest";
 import { AppContext } from "../helpers/context";
 import getDay from "../helpers/getDay";
 import styles from "./Chat.scss";
@@ -15,9 +16,12 @@ const Chat = (props) => {
 
   const { messages, sendMessage } = useMessages(roomId);
   const { someoneTyping, sendSomeoneTyping } = useTyping(roomId);
+  const { test, sendTest } = useTest(roomId);
   const [newMessage, setNewMessage] = useState("");
   const [myselfTyping, setMyselfTyping] = useState(false);
   const [user] = useContext(AppContext);
+
+  console.log(test)
 
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
@@ -40,6 +44,13 @@ const Chat = (props) => {
     });
     setNewMessage("");
   };
+
+  useEffect(() => {
+    setTimeout(function(){     
+      sendTest({
+        user
+      }) }, 1000);
+  }, []);
 
   const chatMessagesProps = {
     messages,
