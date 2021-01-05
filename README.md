@@ -10,7 +10,7 @@ In your terminal, ```cd server``` and run ```node index.js``` to launch the serv
 
 Open second terminal making sure you have ```cd app```. Now run ```yarn install``` to install client dependencies. Then, ```yarn run``` to run the chat app on localhost:8000. Voila, the app should be up and running!
 
-Run the app on two seperate ports to imitate chat, to see all the features of the application.
+Run the app on two or more seperate ports to imitate chat and see all the features of the application.
 
 ## App features
 

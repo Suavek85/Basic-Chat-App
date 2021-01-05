@@ -34,6 +34,7 @@ const useAllusers = (roomId) => {
     socket.current.emit('adduser', {
       user: message.user,
       senderId: socket.current.id,
+      roomId: message.roomId
     });
   };
 

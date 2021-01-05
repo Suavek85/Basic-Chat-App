@@ -45,7 +45,8 @@ const Chat = (props) => {
   useEffect(() => {
     setTimeout(function(){     
       sendAllusers({
-        user
+        user,
+        roomId
       }) }, 1000);
   }, []);
 

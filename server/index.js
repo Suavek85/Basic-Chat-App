@@ -20,13 +20,9 @@ io.on("connection", (socket) => {
   });
 
   socket.on('adduser', (data) => {
-    //io.in(roomId).emit('adduser', data);
-    //almost works BUT
-    //2) make it seperate to each chat roomId
-    //user should emit {roomId as third property}, can be stored in one global var, 
-    //server should filter out those users that meet condition: io.in.roomId is equal to el.roomId
     serverUsers.push(data);
-    io.in(roomId).emit('adduser', serverUsers); 
+    const chatUsers = serverUsers.filter(el => el.roomId === roomId )
+    io.in(roomId).emit('adduser', chatUsers)
   });
 
   socket.on("disconnect", () => {
