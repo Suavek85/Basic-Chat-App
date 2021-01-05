@@ -1,12 +1,17 @@
 $block: block;
 $blockHeader: block__header;
-
+$blockAllusers: block__allusers;
 
 .#{$block} {
 
     &__header {
         display: flex;
         justify-content: space-between;
+    }
+
+    &__allusers {
+        color: grey;
+        font-size: 12px;
     }
 
     h1 {
@@ -29,5 +34,6 @@ $blockHeader: block__header;
 :export {
     block: $block;
     blockHeader: $blockHeader;
+    blockAllusers: $blockAllusers;
 }
 

@@ -4,30 +4,27 @@ import ChatMessages from './ChatMessages/ChatMessages';
 import ChatInput from './ChatInput/ChatInput';
 import useMessages from "../helpers/useMessages";
 import useTyping from "../helpers/useTyping";
-import useTest from "../helpers/useTest";
+import useAllusers from "../helpers/useAllusers";
 import { AppContext } from "../helpers/context";
 import getDay from "../helpers/getDay";
 import styles from "./Chat.scss";
 
-
 const Chat = (props) => {
 
   const { roomId } = props.match.params;
-
   const { messages, sendMessage } = useMessages(roomId);
   const { someoneTyping, sendSomeoneTyping } = useTyping(roomId);
-  const { test, sendTest } = useTest(roomId);
+  const { allusers, sendAllusers } = useAllusers(roomId);
   const [newMessage, setNewMessage] = useState("");
   const [myselfTyping, setMyselfTyping] = useState(false);
   const [user] = useContext(AppContext);
 
-  console.log(test)
+  console.log(allusers)
 
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
     setMyselfTyping(true);
     sendSomeoneTyping({ isTyping: true });
-
     setTimeout(function(){ 
       setMyselfTyping(false)
       sendSomeoneTyping({ isTyping: false });
@@ -47,10 +44,16 @@ const Chat = (props) => {
 
   useEffect(() => {
     setTimeout(function(){     
-      sendTest({
+      sendAllusers({
         user
       }) }, 1000);
   }, []);
+
+  const chatHeaderProps = {
+    roomId,
+    user,
+    allusers
+  }
 
   const chatMessagesProps = {
     messages,
@@ -66,10 +69,7 @@ const Chat = (props) => {
 
   return (
     <div className={ styles.chat }>
-      <ChatHeader 
-        roomId={roomId} 
-        user={user} 
-      />
+      <ChatHeader {...chatHeaderProps} />
       <ChatMessages {...chatMessagesProps} />
       <ChatInput {...chatInputProps} />
     </div>

@@ -7,7 +7,8 @@ const ChatHeader = props => {
 
     const { 
       roomId, 
-      user
+      user,
+      allusers
     } = props;
 
     return (
@@ -22,6 +23,15 @@ const ChatHeader = props => {
                   { LEAVE_ROOM }
               </button>
             </Link>
+            <div className={ styles.blockAllusers }>
+              All chat users ({ allusers.length}):<br></br>
+              {allusers.map((el, i) => { 
+                if(i === allusers.length - 1) {
+                  return (<span>{el.user}.</span>)
+                }
+                return (<span>{el.user}, </span>) 
+              })}
+            </div>
           </div>
         </section>
     )
