@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 const SOCKET_SERVER_URL = "http://localhost:5000";
+const ADD_USER = "adduser";
+const REMOVE_USER = "removeuser";
 
 const useAllusers = (roomId) => {
 
@@ -12,15 +14,11 @@ const useAllusers = (roomId) => {
       query: { roomId },
     });
 
-    socket.current.on('removeuser', (message) => {
-
-      setAllusers((allusers) => {
-        const filtered = allusers.filter(el => message.id !== el.senderId)
-        return filtered
-      })
+    socket.current.on(REMOVE_USER, (message) => {
+      setAllusers(() => [...message]);
     });
 
-    socket.current.on('adduser', (message) => {
+    socket.current.on(ADD_USER, (message) => {
       setAllusers(() => [...message]);
     });
     

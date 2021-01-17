@@ -1,11 +1,25 @@
-const server = require("http").createServer();
-const io = require("socket.io")(server);
 const MESSAGE_EVENT = "newChatMessage";
 const TYPING = "typing";
+const ADD_USER = "adduser";
+const REMOVE_USER = "removeuser";
 const PORT = 5000;
+
 var serverUsers = [];
 
+const requestListener = function (req, res) {
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+    'Content-Type': 'application/json'
+  };
+  res.writeHead(200, headers);
+  res.end(JSON.stringify({ serverUsers }));
+}
+const server = require("http").createServer(requestListener);
+const io = require("socket.io")(server);
+
 io.on("connection", (socket) => {
+
   console.log(`Client ${socket.id} connected`);
 
   const { roomId } = socket.handshake.query;
@@ -19,15 +33,18 @@ io.on("connection", (socket) => {
     io.in(roomId).emit(TYPING, data);
   });
 
-  socket.on('adduser', (data) => {
+  socket.on(ADD_USER, (data) => {
     serverUsers.push(data);
-    const chatUsers = serverUsers.filter(el => el.roomId === roomId )
-    io.in(roomId).emit('adduser', chatUsers)
+    const chatUsers = serverUsers.filter(el => el.roomId === roomId );
+    io.in(roomId).emit(ADD_USER, chatUsers)
   });
 
   socket.on("disconnect", () => {
     console.log(`Client ${socket.id} diconnected`);
-    io.in(roomId).emit('removeuser', { id: socket.id });
+    const filtered = serverUsers.filter(el => socket.id !== el.senderId);
+    serverUsers = [...filtered]
+    const chatUsers = serverUsers.filter(el => el.roomId === roomId );
+    io.in(roomId).emit(REMOVE_USER, chatUsers ); 
     socket.leave(roomId);
   });
 });

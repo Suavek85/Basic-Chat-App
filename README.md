@@ -2,7 +2,7 @@
 
 ## Description
 
-Simple skype-like chat app with a simple node server. Own idea.
+Simple skype-like chat app with a simple node server. Own idea. WIP
 
 ## Steps to run
 
@@ -18,11 +18,15 @@ General:
 
 - send messages between two or more users on the same channel
 
+Home UI:
+
+- display active chat rooms,
+- join a room: create a new one or pick an existing one,
+- add username before joining,
+
 Chat UI:
 
-- displays info that a given user's in the process of typing a message,
-- displays time and user to all messages sent,
-- displays date if first message of the day,
-- displays all users who joined the channel, updates when user leaves the channel / disconnects etc.
-
-
+- display info that a given user's in the process of typing a message,
+- display time and user to all messages sent,
+- display date if first message of the day,
+- display all users who joined the channel, updates when user leaves the channel / disconnects etc.
