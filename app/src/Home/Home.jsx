@@ -1,85 +1,41 @@
-import React, { useContext, useState, useEffect } from "react";
-import axios from 'axios';
+import React, { useContext, useState } from "react";
+import InputHome from './InputHome';
 import { Link } from "react-router-dom";
 import { AppContext } from "../helpers/context";
-import { StyledRefresh } from './StyledRefresh';
+import ActiveRooms from './ActiveRooms/ActiveRooms';
 import styles from "./Home.scss";
+import './Home.scss';
 
 const Home = () => {
   const JOIN = 'Join'
-  const ACTIVE_ROOMS = 'Active rooms';
-  const NO_ACTIVE_ROOMS = 'No active rooms';
   const reg = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/;
   const [roomName, setRoomName] = useState("");
   const [user, setUser] = useContext(AppContext);
-  const [data, setData] = useState('hey');
-
-  const fetchData = async () => {
-    const result = await axios('http://localhost:5000/',);
-    setData(result.data);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const isValidUser = user.match(reg);
   const handleRoomNameChange = (event) => setRoomName(event.target.value);
   const handleUserNameChange = (event) => setUser(event.target.value);
 
-  //console.log(data)
-  
+  console.log(isValidUser)
+
   return (
     <section className={ styles.block}>
-      <div className={ styles.blockActiveChats }>
-        <div className={ styles.blockActiveChatsHeader }>
-          <h1>{ ACTIVE_ROOMS }</h1>
-          <div onClick={() => fetchData()}>
-            <StyledRefresh />
-          </div>
-        </div>
-        {data && data.serverUsers && data.serverUsers.length > 0 && data.serverUsers.map(el => {
-          return (
-            <div className={ styles.blockRoomItem }>
-              <span> 
-                { el.roomId }
-              </span>
-              <Link 
-                to={isValidUser? `/${ el.roomId }` : `/`}
-                className={`${styles.blockButton} ${styles.blockButtonSmall} ${
-                  !isValidUser && styles.blockButtonDisabled
-                }`}> 
-               { JOIN }
-              </Link>
-            </div> 
-          )}
-        )}
-        {!data || (data && data.serverUsers && data.serverUsers.length === 0) && (
-            <span>{ NO_ACTIVE_ROOMS }</span>
-          )
-        }
-      </div>
-
+      <ActiveRooms isValidUser={ isValidUser } />
       <div className={ styles.blockNewChat }>
-        <div>Username: { user }</div>
-        <input 
-          type="text" 
+        <div className={ styles.blockUser } >Username: { user }</div>
+        <InputHome 
           placeholder="Change username" 
-          onChange={ handleUserNameChange }
-          className={ styles.blockInput }
+          action={ handleUserNameChange } 
         />
-        <input
-          type="text"
-          placeholder="Room"
-          value={ roomName }
-          onChange={ handleRoomNameChange }
-          className={ styles.blockInput }
+        <InputHome 
+          placeholder="Room" 
+          roomName={ roomName } 
+          action={ handleRoomNameChange } 
         />
-
         <Link 
           to={isValidUser? `/${ roomName }` : `/`}
           className={`${styles.blockButton} ${styles.blockButtonBig} ${
-            !isValidUser && styles.blockButtonDisabled
+            !!(!isValidUser || !roomName) && styles.blockButtonDisabled
           }`}> 
             { JOIN }
         </Link>

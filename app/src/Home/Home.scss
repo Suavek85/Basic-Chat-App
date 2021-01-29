@@ -1,91 +1,121 @@
 $block: home;
 $blockNewChat: home__new-chat;
-$blockActiveChats: home__active-chats;
-$blockActiveChatsHeader: home__active-chats-header;
 $blockRoomItem: home__room-item;
 $blockInput: home__input;
+$blockUser: home__user;
 $blockButton: home__button;
 $blockButtonBig: home__button--big;
 $blockButtonSmall: home__button--small;
 $blockButtonDisabled: home__button--disabled;
 
-.#{$block} {
 
+.#{$block} {
     width: 500px;
+    height: 500px;
     display: flex;
     position: absolute;
-    top: 0;
+    background: inherit;
+    overflow: hidden;
+    top: 50px;
     bottom: 0;
     left: 0;
     right: 0;
     margin: 25px auto;
-    border: 1.5px solid grey;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37);
+    border-radius: 10px;
+    overflow: visible;
+    border-radius: 10px 10px 10px 10px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        border-radius: 10px;
+        backdrop-filter: blur( 4px );
+        -webkit-backdrop-filter: blur( 4px );
+        background: rgba( 255, 255, 255, 0.20 );
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+    }
 
     &__new-chat{
+        position: relative;
         width: 65%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background-color: #F6F6F6;
-    }
+        z-index: 10;
+        color: #504f54;
 
-    &__active-chats {
-        display: flex;
-        flex-direction: column;
-        width: 35%;
-        background-color: #dddddd;
-
-        > span {
-            font-size: 14px;
-            color: grey;
-            text-align: center;
-        }
-    }
-
-    &__active-chats-header {
-        display: flex;
-        align-items: center,;
-        margin: 0 auto;
-
-        h1 {
-            font-size: 16px;
-            color: grey; 
-            text-align: center;
-        }
-    }
-
-    &__room-item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-
-        > span {
-            font-size: 14px;
-            color: grey;
-            text-align: center;
-            padding-right: 5px;
-        }
+        &:after {
+            content: "";
+            background: transparent;
+            position: absolute;
+            top: 10%;
+            left: 0;
+            width: inherit;
+            height: 80%;
+            border-left: 1px solid #AFCEEE;
+          }     
     }
 
     &__input {
-        padding: 20px 10px;
+        height: 50px;
         width: 80%;
-        border: 1px solid grey;
+        z-index: 11;
+        border: none;
         border-radius: 5px;
-        font-size: 16px;
         margin-top: 15px;
+        text-indent: 10px;
+    }
+
+    &__user {
+        position: absolute;
+        display: flex;
+        height: 50px;
+        font-size: 14px;
+        font-weight: 300;
+        align-items: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        top: -20px;
+        left: 20%;
+
+        &:before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 4px );
+            -webkit-backdrop-filter: blur( 4px );
+            background: rgba( 255, 255, 255, 0.15 );
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        input[type="text"] {
+            font-size:14px;
+        }
+
     }
 
     &__button {
         border-radius: 5px;
         text-align: center;
-        background: blue;
+        background: #77dd77;
         color: white;
         font-weight: 600;
         text-decoration: none;
+        z-index: 11;
 
         &--small {
             padding: 5px 7px;
@@ -95,7 +125,8 @@ $blockButtonDisabled: home__button--disabled;
 
         &--big {
             width: 80%;
-            padding: 20px 10px;
+            height: 50px;
+            line-height: 50px;
             font-size: 16px;
             margin-top: 15px; 
         }
@@ -103,7 +134,7 @@ $blockButtonDisabled: home__button--disabled;
     
         &--disabled {
             background-color: #cccccc;
-            color: #666666;
+            color: ivory;
         }
     }
 }
@@ -111,9 +142,7 @@ $blockButtonDisabled: home__button--disabled;
 :export {
     block: $block;
     blockNewChat: $blockNewChat;
-    blockActiveChats: $blockActiveChats;
-    blockActiveChatsHeader: $blockActiveChatsHeader;
-    blockRoomItem: $blockRoomItem;
+    blockUser: $blockUser;
     blockInput: $blockInput;
     blockButton: $blockButton;
     blockButtonBig: $blockButtonBig;

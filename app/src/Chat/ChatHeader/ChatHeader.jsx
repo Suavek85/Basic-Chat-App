@@ -14,14 +14,14 @@ const ChatHeader = props => {
     return (
         <section className={ styles.block }>
           <div className={ styles.blockHeader }>
-            <h1 className="chat-name">{ CHAT_NAME }{ roomId }</h1>
-            <h1 className="user-name">{ USER_NAME }{ user }</h1>
+            <p>{ CHAT_NAME }{ roomId }</p>
+            <p>{ USER_NAME }{ user }</p>
           </div>
           <div className={ styles.blockHeader }>
             <Link to={`/`} > 
-              <button>
+                <button>
                   { LEAVE_ROOM }
-              </button>
+                </button>
             </Link>
             <div className={ styles.blockAllusers }>
               All chat users ({ allusers.length}):<br></br>

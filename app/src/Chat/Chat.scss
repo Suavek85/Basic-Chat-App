@@ -12,16 +12,19 @@ $chatHeader: chat__header;
     display: flex;
     flex-direction: column;
     margin: 25px auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37);
 
     textarea { 
         width: calc(100% - 80px);
         border: none;
-        border-left: 1.5px solid grey;
+        border-radius: 0 0 0 10px;
     }
 
     &__header {
         display: flex;
         justify-content: space-between;
+        
         h1 {
             font-size: 14px;
             color: grey;

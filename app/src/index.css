@@ -1,9 +1,17 @@
 body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    background-image:url('./assets/skype-background.png'); 
+    width: 100%;
+    height: 100%;
     margin: 0;
-  }
-  
-  body, input, button, a, textarea {
+}
+
+body, input, button, a, textarea {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
-  }
+    -webkit-font-smoothing: antialiased; 
+}
