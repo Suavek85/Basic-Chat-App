@@ -78,13 +78,14 @@ $blockButtonDisabled: home__button--disabled;
         position: absolute;
         display: flex;
         height: 50px;
+        width: 200px;
         font-size: 14px;
         font-weight: 300;
         align-items: center;
         padding-left: 10px;
         padding-right: 10px;
         top: -20px;
-        left: 20%;
+        left: 17%;
 
         &:before {
             content: '';
@@ -117,11 +118,6 @@ $blockButtonDisabled: home__button--disabled;
         text-decoration: none;
         z-index: 11;
 
-        &--small {
-            padding: 5px 7px;
-            font-size: 12px;
-            margin-left: 5px;
-        }
 
         &--big {
             width: 80%;
@@ -130,8 +126,6 @@ $blockButtonDisabled: home__button--disabled;
             font-size: 16px;
             margin-top: 15px; 
         }
-
-    
         &--disabled {
             background-color: #cccccc;
             color: ivory;

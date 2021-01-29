@@ -4,6 +4,8 @@ $blockActiveChats: home__active-chats;
 $blockActiveChatsHeader: home__active-chats-header;
 $blockRoomItem: home__room-item;
 $blockInput: home__input;
+$blockActiveChatsButton: home__active-chats-button;
+$blockActiveChatsButtonDisabled: home__active-chats-button--disabled;
 
 .#{$block} {
 
@@ -71,10 +73,30 @@ $blockInput: home__input;
             padding-right: 5px;
         }
     }
+
+    &__active-chats-button {
+        border-radius: 5px;
+        text-align: center;
+        background: #77dd77;
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        z-index: 11;
+        padding: 5px 7px;
+        font-size: 12px;
+        margin-left: 5px;
+
+        &--disabled {
+            background-color: #cccccc;
+            color: ivory;
+        }
+    }
 }
 
 :export {
     blockActiveChats: $blockActiveChats;
     blockActiveChatsHeader: $blockActiveChatsHeader;
     blockRoomItem: $blockRoomItem;
+    blockActiveChatsButton: $blockActiveChatsButton;
+    blockActiveChatsButtonDisabled: $blockActiveChatsButtonDisabled;
 }

@@ -7,7 +7,7 @@ import styles from "./Home.scss";
 import './Home.scss';
 
 const Home = () => {
-  const JOIN = 'Join'
+  const JOIN = 'Join room'
   const reg = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/;
   const [roomName, setRoomName] = useState("");
   const [user, setUser] = useContext(AppContext);
@@ -34,9 +34,11 @@ const Home = () => {
         />
         <Link 
           to={isValidUser? `/${ roomName }` : `/`}
-          className={`${styles.blockButton} ${styles.blockButtonBig} ${
-            !!(!isValidUser || !roomName) && styles.blockButtonDisabled
-          }`}> 
+          className={`
+            ${styles.blockButton} 
+            ${styles.blockButtonBig} 
+            ${!!(!isValidUser || !roomName) && styles.blockButtonDisabled}
+          `}> 
             { JOIN }
         </Link>
       </div>

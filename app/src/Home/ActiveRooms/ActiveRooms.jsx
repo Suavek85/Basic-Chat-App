@@ -35,10 +35,12 @@ const ActiveRooms = props => {
                     { el.roomId }
                     </span>
                     <Link 
-                    to={isValidUser? `/${ el.roomId }` : `/`}
-                    className={`${styles.blockButton} ${styles.blockButtonSmall} ${
-                        !isValidUser && styles.blockButtonDisabled
-                    }`}> 
+                      to={isValidUser? `/${ el.roomId }` : `/`}
+                      className={`
+                        ${styles.blockActiveChatsButton}  
+                        ${!isValidUser && styles.blockActiveChatsButtonDisabled}
+                      `}
+                    > 
                     Join
                     </Link>
                 </div> 
