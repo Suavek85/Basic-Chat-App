@@ -12,6 +12,11 @@ Open second terminal making sure you have ```cd app```. Now run ```yarn install`
 
 Run the app on two or more seperate ports to imitate chat and see all the features of the application.
 
+## Steps to run
+
+Simple live demo https://chatapp32.web.app/ (front end on Firebase, backend on Heroku).
+
+
 ## App features
 
 General:
